@@ -1,9 +1,23 @@
 require('./settings')
-const { BufferJSON, WA_DEFAULT_EPHEMERAL, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, areJidsSameUser, getContentType } = require('@adiwajshing/baileys')
+const { 
+    BufferJSON, 
+    WA_DEFAULT_EPHEMERAL, 
+    generateWAMessageFromContent, 
+    proto, 
+    generateWAMessageContent, 
+    generateWAMessage, 
+    prepareWAMessageMedia, 
+    areJidsSameUser, 
+    getContentType 
+} = require('@adiwajshing/baileys')
 const fs = require('fs')
 const util = require('util')
 const chalk = require('chalk')
-const { exec, spawn, execSync } = require("child_process")
+const { 
+    exec, 
+    spawn, 
+    execSync 
+} = require("child_process")
 const axios = require('axios')
 const path = require('path')
 const os = require('os')
@@ -13,7 +27,23 @@ const speed = require('performance-now')
 const { performance } = require('perf_hooks')
 const { Primbon } = require('scrape-primbon')
 const primbon = new Primbon()
-const { smsg, formatp, tanggal, formatDate, getTime, isUrl, sleep, clockString, runtime, fetchJson, getBuffer, jsonformat, format, parseMention, getRandom } = require('./lib/myfunc')
+const { 
+    smsg, 
+    formatp, 
+    tanggal, 
+    formatDate, 
+    getTime, 
+    isUrl, 
+    sleep, 
+    clockString, 
+    runtime, 
+    fetchJson, 
+    getBuffer, 
+    jsonformat, 
+    format, 
+    parseMention, 
+    getRandom 
+} = require('./lib/myfunc')
 const nexusnw = require('xfarr-api')
 
 //rpg function\\
@@ -3571,7 +3601,7 @@ Report Message: ${text}`
             // #################################################################################
 
             case 'sc': case 'script': {
-                reply(`GitHub : https://github.com/nexusNw/Dark-Ezio\n Dont Forget To Give Star\n\nYouTube : ${myweb}\nDont Forget To Watch Tutorial`)
+                reply(`GitHub : https://zenzapis.xyz\n Dont Forget To Give Star\n\nYouTube : ${myweb}\nDont Forget To Watch Tutorial`)
             } break
 
             // #################################################################################

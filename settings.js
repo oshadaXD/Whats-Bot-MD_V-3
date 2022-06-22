@@ -1,57 +1,46 @@
 //═══════════════════════════════════════════════════════//
 //
-//                              𝙶𝙾𝙹𝙾-𝚂𝙰𝚃𝙾𝚁𝚄 𝓫𝔂 𝓷𝓮𝔁𝓾𝓼𝓝𝔀
+//                              Whats-Bot-MD_V-3 by darkezio
 //𝙰𝙳𝙾𝙿𝚃𝙴𝙳 𝙵𝚁𝙾𝙼  𝚂𝙲𝚁𝙸𝙿𝚃 𝙾𝙵 𝙲𝙷𝙴𝙴𝙼𝚂𝙱𝙾𝚃 𝚅2 𝙱𝚈 𝙳𝙶𝚇𝚎𝚘𝚗 
 //
 //════════════════════════════//
 
+require('./lib/config.js')
 const fs = require('fs')
 const chalk = require('chalk')
-
-//Api Website\\
-global.APIs = {
-	zenz: 'https://zenzapis.xyz',
-}
+const { ownername, botname, footer, ig, region, myweb, packname, author, sessionName, prefa, sp, mess, APIs, YOUR_API_KEY } = require('./lib/config.js')
 
 //Api Key\\
-global.APIKeys = {
-	'https://zenzapis.xyz': 'sanzychan01', //credit goes to sanzy yt, if api key expire, buy it and put it here?\\
-}
-
+global.APIKeys = {'https://zenzapis.xyz': YOUR_API_KEY } //credit goes to sanzy yt, if api key expire, buy it and put it here?\\ https://zenzapis.xyz
 //customize settings\\
-global.owner = ['94761539856']
-global.premium = ['94761539856']
-global.ownernomer = '94761539856'
-global.ownername = 'Dark_Ezio'
-global.botname = 'Ai_Dark_Ezio_Wa-Bot'
-global.footer = '©Subadra_Poshitha.'
-global.ig = 'https://github.com/aidarkezio'
-global.region = 'India, South India, Kerala'
-global.sc = 'https://github.com/AiDarkEzio/Whats-Bot.git'
-global.myweb = 'https://www.youtube.com/channel/UCeDeaDD8dpdMT2gO3VHY1JQ'
-global.packname = 'Ai_Dark_Ezio_Wa-Bot'
-global.author = 'Dark_Ezio'
-global.sessionName = 'session'
-global.prefa = ['','!','.','🐦','🐤','🗿']
-global.sp = 'aidarkezio.github.io'
-global.mess = {
-    success: 'Done ✓',
-    admin: 'This Feature Is Only For Admin!',
-    botAdmin: 'Bot Must Be Admin First!',
-    owner: 'This Feature Is Only For Owner!',
-    group: 'Feature Used Only For Groups!',
-    private: 'Features Used Only For Private Chat!',
-    bot: 'This Feature Is Only For Bot',
-    wait: 'Wait A minute...',
-    error: 'Error! Maybe Api Key Is Expired🤔!',
-    endLimit: 'Your Daily Limit Has Expired, The Limit Will Be Reset Every 12 Hours',
-}
-    global.limitawal = {
+global.owner = ['94761539856'] // Add Your number Eg: ['94761539856', 'YOUR NUMBER']
+global.premium = ['94761539856'] // Add Your number Eg: ['94761539856', 'YOUR NUMBER']
+global.ownernomer = '94761539856' // Add Your number Eg: ['YOUR NUMBER']
+global.sc = 'https://github.com/AiDarkEzio/Whats-Bot-MD_V-3.git' // AiDarkEzio to change your github name
+
+
+
+//Don't edit enithing\\
+global.APIs = APIs
+global.ownername = ownername
+global.botname = botname
+global.footer = footer
+global.ig = ig
+global.region = region
+global.myweb = myweb
+global.packname = packname
+global.author = author
+global.sessionName = sessionName
+global.prefa = prefa 
+global.sp = sp
+global.mess = mess
+
+global.limitawal = {
     premium: "Infinity",
     free: 12,
     monayawal: 1000
 }
-   global.rpg = {
+global.rpg = {
    darahawal: 100,
    besiawal: 15,
    goldawal: 10,
