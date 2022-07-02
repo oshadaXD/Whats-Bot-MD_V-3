@@ -23,7 +23,7 @@ const { logEvents, logger, shutDown } = require('./middleware/logEvents');
 const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require('./lib/exif')
 const { smsg, isUrl, generateMessageTag, getBuffer, getSizeMedia, fetchJson, await, sleep } = require('./lib/myfunc')
 print = console.log
-const port = process.env.PORT || 8030
+const port = 8030
 var low
 try {
     low = require('lowdb')
