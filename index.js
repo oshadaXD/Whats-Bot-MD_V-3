@@ -17,7 +17,7 @@ const yargs = require('yargs/yargs')
 const chalk = require('chalk')
 const FileType = require('file-type')
 const path = require('path')
-require('dotenv').config()
+// require('dotenv').config()
 const PhoneNumber = require('awesome-phonenumber')
 const { logEvents, logger, shutDown } = require('./middleware/logEvents');
 const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require('./lib/exif')
