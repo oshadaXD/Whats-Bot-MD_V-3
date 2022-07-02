@@ -17,11 +17,13 @@ const yargs = require('yargs/yargs')
 const chalk = require('chalk')
 const FileType = require('file-type')
 const path = require('path')
+require('dotenv').config()
 const PhoneNumber = require('awesome-phonenumber')
 const { logEvents, logger, shutDown } = require('./middleware/logEvents');
 const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require('./lib/exif')
 const { smsg, isUrl, generateMessageTag, getBuffer, getSizeMedia, fetchJson, await, sleep } = require('./lib/myfunc')
 print = console.log
+const port = process.env.PORT || 8030
 var low
 try {
     low = require('lowdb')
@@ -29,7 +31,32 @@ try {
     low = require('./lib/lowdb')
 }
 
-const server = app.listen(5580, () => console.log('Server Is started....'));
+app.use(express.static(path.join(__dirname, '/static')));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(logger);
+
+app.get('^/$|/index(.html)?', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'index.html'));
+});
+
+app.get('/projets(.html)?', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'projets.html'));
+});
+
+app.get('/projet(.html)?', (req, res) => {
+    res.redirect(301, '/projets.html');
+});
+
+app.get('/owner(.html)?', (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', 'owner.html'));
+});
+
+app.get('/*', (req, res) => {
+    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
+});
+
+const server = app.listen(port, () => console.log(`Server Is started on port ${port}...`));
 const { Low, JSONFile } = low
 const mongoDB = require('./lib/mongoDB')
 
@@ -600,7 +627,7 @@ async function DarkEzio_Whats_Bot() {
 
 DarkEzio_Whats_Bot()
 
-// app.listen(5580, () => console.log('Server Is started....'));
+// app.listen(port, () => console.log(`Server Is started on port ${port}...`));
 
 // let file = require.resolve(__filename)
 // fs.watchFile(file, () => {

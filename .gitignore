@@ -5,3 +5,7 @@ package-lock.json
 test.js
 
 help.js
+
+logs/
+
+.env
