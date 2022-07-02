@@ -8,7 +8,9 @@
 require('./settings')
 const { default: NexusNwIncConnect, useSingleFileAuthState, DisconnectReason, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto } = require("@adiwajshing/baileys")
 const { state, saveState } = useSingleFileAuthState(`./${sessionName}.json`)
-const pino = require('pino')
+const pino = require('pino');
+const express = require('express');
+const app = express();
 const { Boom } = require('@hapi/boom')
 const fs = require('fs')
 const yargs = require('yargs/yargs')
@@ -16,6 +18,7 @@ const chalk = require('chalk')
 const FileType = require('file-type')
 const path = require('path')
 const PhoneNumber = require('awesome-phonenumber')
+const { logEvents, logger, shutDown } = require('./middleware/logEvents');
 const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require('./lib/exif')
 const { smsg, isUrl, generateMessageTag, getBuffer, getSizeMedia, fetchJson, await, sleep } = require('./lib/myfunc')
 print = console.log
@@ -26,6 +29,7 @@ try {
     low = require('./lib/lowdb')
 }
 
+const server = app.listen(5580, () => console.log('Server Is started....'));
 const { Low, JSONFile } = low
 const mongoDB = require('./lib/mongoDB')
 
@@ -56,8 +60,13 @@ if (global.db) setInterval(async () => {
     if (global.db.data) await global.db.write()
 }, 30 * 1000)
 
+app.get('^/$|/index(.html)?', (req, res) => {
+    res.send('Hello World..')
+    // res.sendFile(path.join(__dirname, 'views', 'index.html'));
+});
+
 async function DarkEzio_Whats_Bot() {
-    print("Bot maun function started...")
+    print("Bot main function started...")
     const conn = NexusNwIncConnect({ // GojoMdNx to conn
         logger: pino({ level: 'silent' }),
         printQRInTerminal: true,
@@ -235,16 +244,36 @@ async function DarkEzio_Whats_Bot() {
         const { connection, lastDisconnect } = update
         if (connection === 'close') {
             let reason = new Boom(lastDisconnect?.error)?.output.statusCode
-            if (reason === DisconnectReason.badSession) { print(`Bad Session File, Please Delete Session and Scan Again`); conn.logout(); }
-            else if (reason === DisconnectReason.connectionClosed) { print("🐦Connection closed, reconnecting...."); DarkEzio_Whats_Bot(); }
-            else if (reason === DisconnectReason.connectionLost) { print("🐦Connection Lost from Server, reconnecting..."); DarkEzio_Whats_Bot(); }
-            else if (reason === DisconnectReason.connectionReplaced) { print("🐦Connection Replaced, Another New Session Opened, Please Close Current Session First"); conn.logout(); }
-            else if (reason === DisconnectReason.loggedOut) { print(`🐦Device Logged Out, Please Scan Again And Run.`); conn.logout(); }
-            else if (reason === DisconnectReason.restartRequired) { print("🐦Restart Required, Restarting..."); DarkEzio_Whats_Bot(); }
-            else if (reason === DisconnectReason.timedOut) { print("🐦Connection TimedOut, Reconnecting..."); DarkEzio_Whats_Bot(); }
+            if (reason === DisconnectReason.badSession) { 
+                print(`Bad Session File, Please Delete Session and Scan Again`); 
+                conn.logout(); 
+            }
+            else if (reason === DisconnectReason.connectionClosed) { 
+                print("🐦Connection closed, reconnecting...."); 
+                DarkEzio_Whats_Bot(); 
+            }
+            else if (reason === DisconnectReason.connectionLost) { 
+                print("🐦Connection Lost from Server, reconnecting..."); 
+                DarkEzio_Whats_Bot(); 
+            }
+            else if (reason === DisconnectReason.connectionReplaced) { 
+                print("🐦Connection Replaced, Another New Session Opened, Please Close Current Session First"); 
+                conn.logout(); 
+            }
+            else if (reason === DisconnectReason.loggedOut) { 
+                print(`🐦Device Logged Out, Please Scan Again And Run.`); 
+                conn.logout(); 
+            }
+            else if (reason === DisconnectReason.restartRequired) { 
+                print("🐦Restart Required, Restarting..."); 
+                DarkEzio_Whats_Bot(); 
+            }
+            else if (reason === DisconnectReason.timedOut) { 
+                print("🐦Connection TimedOut, Reconnecting..."); 
+                DarkEzio_Whats_Bot(); 
+            }
             else conn.end(`🐦Unknown DisconnectReason: ${reason}|${connection}`)
         }
-        print('Connected...')
         print('Connected...', update)
     })
 
@@ -566,18 +595,20 @@ async function DarkEzio_Whats_Bot() {
     }
 
     return conn
+    
 }
 
 DarkEzio_Whats_Bot()
 
+// app.listen(5580, () => console.log('Server Is started....'));
 
-let file = require.resolve(__filename)
-fs.watchFile(file, () => {
-    fs.unwatchFile(file)
-    print(chalk.redBright(`Update ${__filename}`))
-    delete require.cache[file]
-    require(file)
-})
+// let file = require.resolve(__filename)
+// fs.watchFile(file, () => {
+//     fs.unwatchFile(file)
+//     print(chalk.redBright(`Update ${__filename}`))
+//     delete require.cache[file]
+//     require(file)
+// })
 
 // module.exports = {
 //     toAudio,
