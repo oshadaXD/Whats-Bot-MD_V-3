@@ -5,24 +5,22 @@
 //
 //════════════════════════════//
 
-require('./settings')
 const { default: NexusNwIncConnect, useSingleFileAuthState, DisconnectReason, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto } = require("@adiwajshing/baileys")
 const { state, saveState } = useSingleFileAuthState(`./${sessionName}.json`)
 const pino = require('pino');
-const express = require('express');
-const app = express();
 const { Boom } = require('@hapi/boom')
 const fs = require('fs')
 const yargs = require('yargs/yargs')
 const chalk = require('chalk')
 const FileType = require('file-type')
 const path = require('path')
-// require('dotenv').config()
 const PhoneNumber = require('awesome-phonenumber')
-const { logEvents, logger, shutDown } = require('./middleware/logEvents');
+
+require('./settings')
 const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require('./lib/exif')
 const { smsg, isUrl, generateMessageTag, getBuffer, getSizeMedia, fetchJson, await, sleep } = require('./lib/myfunc')
-print = console.log
+
+const print = console.log
 const port = 8030
 var low
 try {
@@ -31,32 +29,6 @@ try {
     low = require('./lib/lowdb')
 }
 
-app.use(express.static(path.join(__dirname, '/static')));
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(logger);
-
-app.get('^/$|/index(.html)?', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'index.html'));
-});
-
-app.get('/projets(.html)?', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'projets.html'));
-});
-
-app.get('/projet(.html)?', (req, res) => {
-    res.redirect(301, '/projets.html');
-});
-
-app.get('/owner(.html)?', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'owner.html'));
-});
-
-app.get('/*', (req, res) => {
-    res.status(404).sendFile(path.join(__dirname, 'views', '404.html'));
-});
-
-const server = app.listen(port, () => console.log(`Server Is started on port ${port}...`));
 const { Low, JSONFile } = low
 const mongoDB = require('./lib/mongoDB')
 
@@ -87,13 +59,8 @@ if (global.db) setInterval(async () => {
     if (global.db.data) await global.db.write()
 }, 30 * 1000)
 
-app.get('^/$|/index(.html)?', (req, res) => {
-    res.send('Hello World..')
-    // res.sendFile(path.join(__dirname, 'views', 'index.html'));
-});
-
 async function DarkEzio_Whats_Bot() {
-    print("Bot main function started...")
+    print("Bot main function started...");
     const conn = NexusNwIncConnect({ // GojoMdNx to conn
         logger: pino({ level: 'silent' }),
         printQRInTerminal: true,
@@ -101,7 +68,7 @@ async function DarkEzio_Whats_Bot() {
         auth: state
     })
 
-    store.bind(conn.ev)
+    store.bind(conn.ev);
 
     // anticall auto block
     conn.ws.on('CB:call', async (json) => {

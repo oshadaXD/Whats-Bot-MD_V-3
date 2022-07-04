@@ -1,4 +1,6 @@
 require('./settings')
+const { api_down_url, api_srh_url } = require('./lib/defunc')
+const { v4: uuid } = require('uuid');
 const { 
     BufferJSON, 
     WA_DEFAULT_EPHEMERAL, 
@@ -13,6 +15,13 @@ const {
 const fs = require('fs')
 const util = require('util')
 const chalk = require('chalk')
+const {
+    Bold,
+    Monospace,
+    Cut,
+    Italic,
+    Print
+} = require('./lib/msg_beautifuller')
 const { 
     exec, 
     spawn, 
@@ -54,6 +63,12 @@ const {
     kurangDarah,
     getDarah
 } = require('./storage/user/darah.js');
+
+const {
+    D_E_TMB,
+    SEND_REED,
+    D_E_DPC
+} = require('./lib/config');
 
 const {
     cekInventoryAdaAtauGak,
@@ -240,11 +255,11 @@ module.exports = GojoMdNx = async (conn, m, chatUpdate, store) => { // GojoMdNx 
 
         //group target \\
         const reply = (teks) => {
-            conn.sendMessage(m.chat, { text: teks, contextInfo: { "externalAdReply": { "title": ` ${global.botname}`, "body": ` Dark-Ezio`, "previewType": "PHOTO", "thumbnailUrl": ``, "thumbnail": fs.readFileSync(`./Media/gojo.jpg`), "sourceUrl": "https://telegra.ph/file/8bbe8a7de5c351dfcb077.jpg" } } }, { quoted: m })
+            conn.sendMessage(m.chat, { text: teks, contextInfo: { "externalAdReply": { "title": ` ${global.botname}`, "body": ` Dark_Ezio`, "previewType": "PHOTO", "thumbnailUrl": ``, "thumbnail": fs.readFileSync(`./Media/gojo.jpg`), "sourceUrl": D_E_TMB } } }, { quoted: m })
         }
 
         const replay = (teks) => {
-            conn.sendMessage(m.chat, { text: teks, contextInfo: { "externalAdReply": { "title": ` ${global.botname}`, "body": ` Dark-Ezio`, "previewType": "PHOTO", "thumbnailUrl": ``, "thumbnail": fs.readFileSync(`./Media/gojo.jpg`), "sourceUrl": "https://telegra.ph/file/8bbe8a7de5c351dfcb077.jpg" } } }, { quoted: m })
+            conn.sendMessage(m.chat, { text: teks, contextInfo: { "externalAdReply": { "title": ` ${global.botname}`, "body": ` Dark_Ezio`, "previewType": "PHOTO", "thumbnailUrl": ``, "thumbnail": fs.readFileSync(`./Media/gojo.jpg`), "sourceUrl": D_E_TMB } } }, { quoted: m })
         }
 
         //Public & Self\\
@@ -2121,7 +2136,8 @@ ${vote[m.chat][2].map((v, i) => `┃╠ ${i + 1}. @${v.split`@`[0]}`).join('\n')
                 if (!text) return reply(`Example : ${prefix + command} Stay`)
                 let yts = require("yt-search")
                 let search = await yts(text)
-                let anu = search.videos[Math.floor(Math.random() * search.videos.length)]
+                let anu = search.videos[0]
+                // let anu = search.videos[Math.floor(Math.random() * search.videos.length)]
                 let buttons = [
                     { buttonId: `ytmp3 ${anu.url}`, buttonText: { displayText: '🎶Audio🎶' }, type: 1 },
                     { buttonId: `ytmp4 ${anu.url}`, buttonText: { displayText: '📽️Video📽️' }, type: 1 }
@@ -3331,15 +3347,7 @@ Report Message: ${text}`
             case 'alive': case 'bot': {
                 timestampe = speed();
                 latensie = speed() - timestampe
-                anu = ` `
-                const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-                    templateMessage: {
-                        hydratedTemplate: {
-                            hydratedContentText: anu,
-                            locationMessage: {
-                                jpegThumbnail: fs.readFileSync('./Media/D_E-DPC.jpg')
-                            },
-                            hydratedFooterText: `┌─❖
+                anu = `┌─❖
 │「 Hi 👋 」
 └┬❖ 「 ${pushname} 」
 ┌┤✑  I'm alive now🎉
@@ -3356,7 +3364,15 @@ Report Message: ${text}`
 │✙ 𝗧𝗼𝘁𝗮𝗹 𝗨𝘀𝗲𝗿 : ${Object.keys(global.db.data.users).length}
 └┬──────────────┈ ⳹
    │✑  Please Select The Button Below
-   └───────────────┈ ⳹`,
+   └───────────────┈ ⳹`
+                const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+                    templateMessage: {
+                        hydratedTemplate: {
+                            hydratedContentText: anu,
+                            locationMessage: {
+                                jpegThumbnail: fs.readFileSync('./Media/D_E-DPC.jpg')
+                            },
+                            hydratedFooterText: '©Subadra_Poshitha',
                             hydratedButtons: [
                                 {
                                     urlButton: {
@@ -3400,15 +3416,7 @@ Report Message: ${text}`
             case 'list': case 'menu': {
                 timestampe = speed();
                 latensie = speed() - timestampe
-                anu = ``
-                const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
-                    templateMessage: {
-                        hydratedTemplate: {
-                            hydratedContentText: anu,
-                            locationMessage: {
-                                jpegThumbnail: fs.readFileSync('./Media/D_E-DPC.jpg')
-                            },
-                            hydratedFooterText: `
+                anu = `
 ┌─❖
 │「 Hi 👋 」
 └┬❖ 「 ${pushname} 」
@@ -3425,7 +3433,15 @@ Report Message: ${text}`
 │✙ 𝗧𝗼𝘁𝗮𝗹 𝗨𝘀𝗲𝗿 : ${Object.keys(global.db.data.users).length}
 └┬──────────────┈ ⳹
    │✑  Please Select The Button Below
-   └───────────────┈ ⳹`,
+   └───────────────┈ ⳹`
+                const template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
+                    templateMessage: {
+                        hydratedTemplate: {
+                            hydratedContentText: anu,
+                            locationMessage: {
+                                jpegThumbnail: fs.readFileSync('./Media/D_E-DPC.jpg')
+                            },
+                            hydratedFooterText: '©Subadra_Poshitha',
                             hydratedButtons: [
                                 {
                                     urlButton: {
@@ -3595,7 +3611,7 @@ Report Message: ${text}`
             // #################################################################################
 
             case 'donasi': case 'donate': case 'sewabot': case 'sewa': {
-                conn.sendMessage(m.chat, { image: { url: 'https://telegra.ph/file/c15f725add0381fb69c4b.jpg' }, caption: `*Hi Bro ${m.pushName}*\nDonation section is currently down🥲 , I know you are happy but me 🥲💔\n` }, { quoted: m })
+                conn.sendMessage(m.chat, { image: { url: D_E_DPC }, caption: `*Hi Bro ${m.pushName}*\nDonation section is currently down🥲 , I know you are happy but me 🥲💔\n` }, { quoted: m })
             } break
 
             // #################################################################################
@@ -3865,7 +3881,7 @@ Report Message: ${text}`
 
             case 'mainmenu':
                 var unicorn = await getBuffer(picak + 'Main Menu')
-                await conn.send5ButImg(from, `` + '' + ' ', `
+                await conn.send5ButImg(from, `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔═✪「 MAIN 」
 ┃╠ ${prefix}alive
@@ -3882,7 +3898,7 @@ Report Message: ${text}`
 ┃╠ ${prefix}donate
 ┃╠ ${prefix}report [bug]
 ┃╚═════════════✪
-┗━━「 ${pushname} 」━⭓`, unicorn, [{
+┗━━「 ${pushname} 」━⭓`, '©Subadra_Poshitha', unicorn, [{
                     "urlButton": {
                         "displayText": "YouTube 📍", "url": `${myweb}`
                     }
@@ -3891,7 +3907,7 @@ Report Message: ${text}`
 
             case 'grupmenu': case 'groupmenu':
                 var unicorn = await getBuffer(picak + 'Group Menu')
-                await conn.send5ButImg(from, `` + '' + ' ', `
+                await conn.send5ButImg(from, `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔═✪「 GROUP 」	        
 ┃╠${prefix}grouplink
@@ -3915,12 +3931,12 @@ Report Message: ${text}`
 ┃╠${prefix}checkvote
 ┃╠${prefix}delvote
 ┃╚═════════════✪
-┗━━「 ${pushname} 」━⭓`, unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
+┗━━「 ${pushname} 」━⭓`, '©Subadra_Poshitha', unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
                 break
 
             case 'rpgmenu':
                 var unicorn = await getBuffer(picak + 'Rpg Menu')
-                await conn.send5ButImg(from, `` + '' + ' ', `
+                await conn.send5ButImg(from, `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔═✪「 RPG 」	        
 ┃╠${prefix}hunting
@@ -3933,12 +3949,12 @@ Report Message: ${text}`
 ┃╠${prefix}buy [option]
 ┃╠${prefix}sell [option]
 ┃╚═════════════✪
-┗━━「 ${pushname} 」━⭓`, unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
+┗━━「 ${pushname} 」━⭓`, '©Subadra_Poshitha', unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
                 break
 
             case 'funmenu':
                 var unicorn = await getBuffer(picak + 'Fun Menu')
-                await conn.send5ButImg(from, `` + '' + ' ', `
+                await conn.send5ButImg(from, `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔═✪「 FUN 」	        
 ┃╠ ${prefix}how [text
@@ -3986,12 +4002,12 @@ Report Message: ${text}`
 ┃╠ ${prefix}math [mode]
 ┃╠ ${prefix}suitpvp [tag]
 ┃╚═════════════✪
-┗━━「 ${pushname} 」━⭓`, unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
+┗━━「 ${pushname} 」━⭓`, '©Subadra_Poshitha', unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
                 break
 
             case 'ownermenu':
                 var unicorn = await getBuffer(picak + 'Owner Menu')
-                await conn.send5ButImg(from, `` + '' + ' ', `
+                await conn.send5ButImg(from, `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔═✪「 OWNER 」	        
 ┃╠${prefix}grouplink
@@ -4015,11 +4031,11 @@ Report Message: ${text}`
 ┃╠${prefix}checkvote
 ┃╠${prefix}delvote
 ┃╚═════════════✪
-┗━━「 ${pushname} 」━⭓`, unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
+┗━━「 ${pushname} 」━⭓`, '©Subadra_Poshitha', unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
                 break
             case 'downloadmenu':
                 var unicorn = await getBuffer(picak + 'Downloader Menu')
-                await conn.send5ButImg(from, `` + '' + ' ', `
+                await conn.send5ButImg(from, `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔═✪「 DOWNLOADER 」	        
 ┃╠${prefix}ytmp3 [url|quality]
@@ -4030,11 +4046,11 @@ Report Message: ${text}`
 ┃╠${prefix}joox [query]
 ┃╠${prefix}soundcloud [url]
 ┃╚═════════════✪
-┗━━「 ${pushname} 」━⭓`, unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
+┗━━「 ${pushname} 」━⭓`, '©Subadra_Poshitha', unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
                 break
             case 'searchmenu':
                 var unicorn = await getBuffer(picak + 'Search Menu')
-                await conn.send5ButImg(from, `` + '' + ' ', `
+                await conn.send5ButImg(from, `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔══✪「 SEARCHER 」	        
 ┃╠${prefix}play [query]
@@ -4049,22 +4065,22 @@ Report Message: ${text}`
 ┃╠${prefix}ringtone [query]
 ┃╠${prefix}webtoon [query]
 ┃╚═════════════✪
-┗━━「 ${pushname} 」━⭓`, unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
+┗━━「 ${pushname} 」━⭓`, '©Subadra_Poshitha', unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
                 break
             case 'randommenu':
                 var unicorn = await getBuffer(picak + 'Random Menu')
-                await conn.send5ButImg(from, `` + '' + ' ', `
+                await conn.send5ButImg(from, `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔══✪「 RANDOM 」	        
 ┃╠${prefix}coffee
 ┃╠${prefix}animequote (indo)
 ┃╠${prefix}couplepp
 ┃╚═════════════✪
-┗━━「 ${pushname} 」━⭓`, unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
+┗━━「 ${pushname} 」━⭓`, '©Subadra_Poshitha', unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
                 break
             case 'randomanimemenu':
                 var unicorn = await getBuffer(picak + 'Random Anime Menu')
-                await conn.send5ButImg(from, `` + '' + ' ', `
+                await conn.send5ButImg(from, `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔✪「 RANDOM ANIME 」	        
 ┃╠${prefix}loli
@@ -4095,11 +4111,11 @@ Report Message: ${text}`
 ┃╠${prefix}dance
 ┃╠${prefix}cringe
 ┃╚═════════════✪
-┗━━「 ${pushname} 」━⭓`, unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
+┗━━「 ${pushname} 」━⭓`, '©Subadra_Poshitha', unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
                 break
             case 'textpromenu':
                 var unicorn = await getBuffer(picak + 'Text Pro Menu')
-                await conn.send5ButImg(from, `` + '' + ' ', `
+                await conn.send5ButImg(from, `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔═✪「 TEXT PRO 」	        
 ┃╠ ${prefix}3dchristmas [txt]
@@ -4134,11 +4150,11 @@ Report Message: ${text}`
 ┃╠ ${prefix}blackpink [txt]
 ┃╠ ${prefix}gluetext [txt]
 ┃╚═════════════✪
-┗━━「 ${pushname} 」━⭓`, unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
+┗━━「 ${pushname} 」━⭓`, '©Subadra_Poshitha', unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
                 break
             case 'convertmenu':
                 var unicorn = await getBuffer(picak + 'Converter Menu')
-                await conn.send5ButImg(from, `` + '' + ' ', `
+                await conn.send5ButImg(from, `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔══✪「 CONVERTER 」	        
 ┃╠ ${prefix}toimage [reply stick]
@@ -4153,11 +4169,11 @@ Report Message: ${text}`
 ┃╠ ${prefix}ebinary [reply txt]
 ┃╠ ${prefix}dbinary [reply txt]
 ┃╚═════════════✪
-┗━━「 ${pushname} 」━⭓`, unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
+┗━━「 ${pushname} 」━⭓`, '©Subadra_Poshitha', unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
                 break
             case 'databasemenu':
                 var unicorn = await getBuffer(picak + 'Database Menu')
-                await conn.send5ButImg(from, `` + '' + ' ', `
+                await conn.send5ButImg(from, `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔═══✪「 DATABASE 」	        
 ┃╠ ${prefix}setcmd
@@ -4169,11 +4185,11 @@ Report Message: ${text}`
 ┃╠ ${prefix}getmsg
 ┃╠ ${prefix}delmsg
 ┃╚═════════════✪
-┗━━「 ${pushname} 」━⭓`, unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
+┗━━「 ${pushname} 」━⭓`, '©Subadra_Poshitha', unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
                 break
             case 'databasemenu':
                 var unicorn = await getBuffer(picak + 'Database Menu')
-                await conn.send5ButImg(from, `` + '' + ' ', `
+                await conn.send5ButImg(from, `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔══✪「 ANONYMOUS CHAT 」	        
 ┃╠${prefix}anonymous
@@ -4181,20 +4197,20 @@ Report Message: ${text}`
 ┃╠${prefix}next
 ┃╠${prefix}leave
 ┃╚═════════════✪
-┗━━「 ${pushname} 」━⭓`, unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
+┗━━「 ${pushname} 」━⭓`, '©Subadra_Poshitha', unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
                 break
             case 'islamicmenu':
                 var unicorn = await getBuffer(picak + 'Islamic Menu')
-                await conn.send5ButImg(from, `` + '' + ' ', `
+                await conn.send5ButImg(from, `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔══✪「 ISLAMIC 」	        
 ┃╠${prefix}juzamma
 ┃╚═════════════✪
-┗━━「 ${pushname} 」━⭓`, unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
+┗━━「 ${pushname} 」━⭓`, '©Subadra_Poshitha', unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
                 break
             case 'voicechangermenu':
                 var unicorn = await getBuffer(picak + 'Voice Changer Menu')
-                await conn.send5ButImg(from, `` + '' + ' ', `
+                await conn.send5ButImg(from, `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔══✪「 VOICE CHANGER 」	        
 ┃╠${prefix}bass [reply aud]
@@ -4209,11 +4225,11 @@ Report Message: ${text}`
 ┃╠${prefix}slow [reply aud]
 ┃╠${prefix}squirrel [reply aud]
 ┃╚═════════════✪
-┗━━「 ${pushname} 」━⭓`, unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
+┗━━「 ${pushname} 」━⭓`, '©Subadra_Poshitha', unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
                 break
             case 'horoscopemenu':
                 var unicorn = await getBuffer(picak + 'Horoscope Menu')
-                await conn.send5ButImg(from, `` + '' + ' ', `
+                await conn.send5ButImg(from, `
 ┏━「 ${botname} 」━━⭓ 
 ┃╔══✪「 HOROSCOPE 」	        
 ┃╠${prefix}nomorhoki (indo)
@@ -4247,16 +4263,191 @@ Report Message: ${text}`
 ┃╠${prefix}zodiak (indo)
 ┃╠${prefix}shio (indo)
 ┃╚═════════════✪
-┗━━「 ${pushname} 」━⭓`, unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
+┗━━「 ${pushname} 」━⭓`, '©Subadra_Poshitha' , unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
                 break
             case 'thanksto': case 'tqto': case 'tqtt':
                 var unicorn = await getBuffer(picak + 'Developer')
-                await conn.send5ButImg(from, `Me : Ai Dark Ezio` + '' + ' ', `
+                await conn.send5ButImg(from, `Me : Ai Dark Ezio`, `
 Thanks to ( NexusNw)
 Alien-Alfa (For helping me to deploy qr in replit and answered my every doubts regard this project)
 DGXeon ( 45% Credits goes to him ,in this script)
 And Again Me (King Nexus 🎉) 🐦 Who Helped Assemble This Sexy Script !!!`, unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
                 break
+
+            case 'xn-s': case 'xn-search': {
+                if (!text) return reply(`Example: ${prefix + command} </query>`)
+                if (!isCreator) return replay(`${mess.owner}`)
+                let _url = api_srh_url('searching', 'xnxx', text);
+                try{
+                    request(_url, options, (error, res, body) => {
+                        if (error) return  console.log(error); reply(Italic(error));
+                        if (!error && res.statusCode == 200) {
+                            if (body.status == "OK"){
+                                let caption = `Xnxx Search Query : ${text}\n\n`
+                                for (i in body.result) {
+                                    caption += `⭔ Title : ${body.result[i].title}\n`
+                                    caption += `⭔ Thumb : ${body.result[i].thumb}\n`
+                                    caption += `⭔ Url : ${body.result[i].url}\n\n`
+                                }
+                                let buttons = [
+                                    { buttonId: `xn-video ${body.result[0].url}`, buttonText: { displayText: 'First Video📽️' }, type: 1 },
+                                    { buttonId: `xn-video ${body.result[1].url}`, buttonText: { displayText: 'Second Video📽️' }, type: 1 },
+                                    { buttonId: `xn-video ${body.result[2].url}`, buttonText: { displayText: 'Third Video📽️' }, type: 1 }
+                                ]
+                                let buttonMessage = {
+                                    image: { url: D_E_TMB },
+                                    caption: caption,
+                                    footer: conn.user.name,
+                                    buttons: buttons,
+                                    headerType: 4
+                                }
+                                return conn.sendMessage(m.chat, buttonMessage, { quoted: m })
+                            }else if (body.status == false) {     
+                                replay("From zenzapis:\n  " + Italic(body.message))
+                                return console.error("From zenzapis:\n  " + err);
+                            }
+                            else return reply('Code err')
+                        };
+                    });
+                }catch(error){
+                    console.error("From code:\n  " + error);
+                    reply("From code:\n  " + Italic(error))
+                }
+                 
+            }break
+
+            case 'xv-s': case 'xv-search': {
+                if (!text) return reply(`Example: ${prefix + command} </query>`)
+                if (!isCreator) return replay(`${mess.owner}`)
+                _url = api_srh_url('searching', 'xvideos', text);
+                try{
+                    request(_url, options, (error, res, body) => {
+                        if (error) return  console.log(error); reply(Italic(error));
+                        if (!error && res.statusCode == 200) {
+                            if (body.status == "OK"){
+                                let caption = `Xvideos Search Query : ${text}\n\n`
+                                for (i in body.result) {
+                                    caption += `⭔ Title : ${body.result[i].title}\n`
+                                    caption += `⭔ Time : ${body.result[i].duration}\n`
+                                    caption += `⭔ Thumb : ${body.result[i].thumb}\n`
+                                    caption += `⭔ Url : ${body.result[i].url}\n\n`
+                                }
+                                let buttons = [
+                                    { buttonId: `xv-video ${body.result[0].url}`, buttonText: { displayText: 'First Video📽️' }, type: 1 },
+                                    { buttonId: `xv-video ${body.result[1].url}`, buttonText: { displayText: 'Second Video📽️' }, type: 1 },
+                                    { buttonId: `xv-video ${body.result[2].url}`, buttonText: { displayText: 'Third Video📽️' }, type: 1 }
+                                ]
+                                let buttonMessage = {
+                                    image: { url: D_E_TMB },
+                                    caption: caption,
+                                    footer: conn.user.name,
+                                    buttons: buttons,
+                                    headerType: 4
+                                }
+                                return conn.sendMessage(m.chat, buttonMessage, { quoted: m })
+                            }else if (body.status == false) {     
+                                replay("From zenzapis:\n  " + Italic(body.message))
+                                return console.error("From zenzapis:\n  " + err);
+                            }
+                            else return reply('Code err')
+                        };
+                    });
+                }catch(error){
+                    console.error("From code:\n  " + error);
+                    reply("From code:\n  " + Italic(error))
+                }
+                
+                 
+            }break
+            
+            case "xn-video": case "xn-play":
+                if (!text) return reply(`Example: ${prefix + command} </url>`)
+                if (!isCreator) return replay(`${mess.owner}`)
+                _url = api_down_url('downloader', 'xnxx', text)
+                try{
+                    request(_url, options, (error, res, reslt) => {
+                        if (error) return  console.log(error)
+                        if (!error && res.statusCode == 200) {
+                        if (reslt.status == "OK") {
+                            let buttons = [
+                                { buttonId: `dl-mp4 ${reslt.result.files.high} ${reslt.result.title}`, buttonText: { displayText: '📽️High quality📽️' }, type: 1 },
+                                { buttonId: `dl-mp4 ${reslt.result.files.Low} ${reslt.result.title}`, buttonText: { displayText: '📽️Low quality📽️' }, type: 1 }
+                            ]
+                            let buttonMessage = {
+                                image: { url: D_E_TMB },
+                                caption: "\n🐦 Title : " + reslt.result.title + "\n" + 
+                                        '🐦 Ext : mp4' + "\n" + 
+                                        "🐦 Duration : " + reslt.result.duration + "\n" + 
+                                        "🐦 Info : " + reslt.result.info + "\n" + 
+                                        "🐦 Url : " + text + "\n",
+                                footer: conn.user.name,
+                                buttons: buttons,
+                                headerType: 4
+                            }
+                            return conn.sendMessage(m.chat, buttonMessage, { quoted: m })
+                        } else if (reslt.status == false) {     
+                            replay("From zenzapis:\n  " + Italic(reslt.message))
+                            return console.error("From zenzapis:\n  " + err);
+                        }
+                        else return reply('Code err')
+                        };
+                    });
+                } catch (err) {
+                    console.error("From code:\n  " + err);
+                    reply("From code:\n  " + Italic(err))
+                }
+                break
+
+            case "xv-video": case "xv-play":
+                    if (!text) return reply(`Example: ${prefix + command} </url>`)
+                    if (!isCreator) return replay(`${mess.owner}`)
+                    _url = api_down_url('downloader', 'xvideos', text)
+                    try{
+                        request(_url, options, (error, res, reslt) => {
+                            if (error) return  console.log(error)
+                            if (!error && res.statusCode == 200) {
+                            if (reslt.status == "OK") {
+                                let buttons = [
+                                    { buttonId: `dl-mp4 ${reslt.result.files.high} ${reslt.result.title}`, buttonText: { displayText: '📽️High quality📽️' }, type: 1 },
+                                    { buttonId: `dl-mp4 ${reslt.result.files.Low} ${reslt.result.title}`, buttonText: { displayText: '📽️Low quality📽️' }, type: 1 }
+                                ]
+                                let buttonMessage = {
+                                    image: { url: D_E_TMB },
+                                    caption: "\n🐦 Title : " + reslt.result.title + "\n" + 
+                                            '🐦 Ext : mp4' + "\n" + 
+                                            "🐦 Duration : " + reslt.result.duration + "\n" + 
+                                            "🐦 Info : " + reslt.result.info + "\n" + 
+                                            "🐦 Url : " + text + "\n",
+                                    footer: conn.user.name,
+                                    buttons: buttons,
+                                    headerType: 4
+                                }
+                                return conn.sendMessage(m.chat, buttonMessage, { quoted: m })
+                            } else if (!reslt.status) {     
+                                replay("From zenzapis:\n  " + Italic(reslt.message))
+                                return console.error("From zenzapis:\n  " + err);
+                            }
+                            else return reply('Code err')
+                            };
+                        });
+                    } catch (err) {
+                        replay("From code:\n  " + Italic(reslt.message))
+                        console.error("From code:\n  " + err);
+                    }
+                    break
+
+            case 'dl-mp4': {
+                try{
+                    if (!text) return reply(`Example : ${prefix + command} </Url> </tittle>`)
+                let title = args[1] ? args[1] : uuid();
+                let vide_url = args[0] ? args[0] : 'true'
+                conn.sendMessage(m.chat, { video: { url: vide_url }, mimetype: 'video/mp4', fileName: `${title}.mp4`, caption: Bold(`Created By @Dark_Ezio_Whats-Bot`) }, { quoted: m })
+                
+                }catch (err){
+                    reply('code: ' + err)
+                }  
+            }break
+            
             default:
                 if (budy.startsWith('=>')) {
                     if (!isCreator) return reply(mess.owner)

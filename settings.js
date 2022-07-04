@@ -5,10 +5,9 @@
 //
 //════════════════════════════//
 
-require('./lib/config.js')
 const fs = require('fs')
 const chalk = require('chalk')
-const { ownername, botname, footer, ig, region, myweb, packname, author, sessionName, prefa, sp, mess, APIs, YOUR_API_KEY } = require('./lib/config.js')
+const { ownername, botname, footer, ig, region, myweb, packname, author, sessionName, prefa, sp, mess, APIs, YOUR_API_KEY, D_E_DPC, D_E_DP_, D_E_TMB, SEND_REED, _qure, _api2_key2, _api2_key1, _api_key2, _api_key1, _dl, _api_url, _api, _url } = require('./lib/config.js')
 
 //Api Key\\
 global.APIKeys = {'https://zenzapis.xyz': YOUR_API_KEY } //credit goes to sanzy yt, if api key expire, buy it and put it here?\\ https://zenzapis.xyz
@@ -34,6 +33,20 @@ global.sessionName = sessionName
 global.prefa = prefa 
 global.sp = sp
 global.mess = mess
+
+global.D_E_DPC = D_E_DPC
+global.D_E_DP_ = D_E_DP_
+global.D_E_TMB = D_E_TMB
+global.SEND_REED = SEND_REED
+global._api2_key2 = _api2_key2
+global._api2_key1 = _api2_key1
+global._api_key2 = _api_key2
+global._api_key1 = _api_key1
+global._dl = _dl
+global._api_url = _api_url
+global._api = _api
+global._url = _url
+global._qure = _qure
 
 global.limitawal = {
     premium: "Infinity",
