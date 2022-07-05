@@ -6,7 +6,6 @@
 //════════════════════════════//
 require('./settings')
 const { default: NexusNwIncConnect, useSingleFileAuthState, DisconnectReason, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto } = require("@adiwajshing/baileys")
-const { state, saveState } = useSingleFileAuthState(`./${sessionName}.json`)
 const pino = require('pino');
 const { Boom } = require('@hapi/boom')
 const fs = require('fs')
@@ -57,6 +56,8 @@ global.db.data = {
 if (global.db) setInterval(async () => {
     if (global.db.data) await global.db.write()
 }, 30 * 1000)
+
+const { state, saveState } = useSingleFileAuthState(`./session.json`)
 
 async function DarkEzio_Whats_Bot() {
     print("Bot main function started...");
