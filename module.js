@@ -1,6 +1,7 @@
 require('./settings')
 const { api_down_url, api_srh_url } = require('./lib/defunc')
 const { v4: uuid } = require('uuid');
+const request = require('request');
 const { 
     BufferJSON, 
     WA_DEFAULT_EPHEMERAL, 
