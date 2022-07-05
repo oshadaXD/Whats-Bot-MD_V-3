@@ -5,29 +5,61 @@
 //
 //════════════════════════════//
 require('./settings')
-const { default: NexusNwIncConnect, useSingleFileAuthState, DisconnectReason, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, makeInMemoryStore, jidDecode, proto } = require("@adiwajshing/baileys")
+const { 
+    default: 
+    NexusNwIncConnect, 
+    useSingleFileAuthState, 
+    DisconnectReason, 
+    fetchLatestBaileysVersion, 
+    generateForwardMessageContent, 
+    prepareWAMessageMedia, 
+    generateWAMessageFromContent, 
+    generateMessageID, 
+    downloadContentFromMessage, 
+    makeInMemoryStore, 
+    jidDecode, 
+    proto 
+} = require("@adiwajshing/baileys")
 const pino = require('pino');
-const { Boom } = require('@hapi/boom')
+const { 
+    Boom 
+} = require('@hapi/boom')
 const fs = require('fs')
 const yargs = require('yargs/yargs')
 const chalk = require('chalk')
 const FileType = require('file-type')
 const path = require('path')
 const PhoneNumber = require('awesome-phonenumber')
-
-const { imageToWebp, videoToWebp, writeExifImg, writeExifVid } = require('./lib/exif')
-const { smsg, isUrl, generateMessageTag, getBuffer, getSizeMedia, fetchJson, await, sleep } = require('./lib/myfunc')
-
+const { 
+    imageToWebp, 
+    videoToWebp, 
+    writeExifImg, 
+    writeExifVid 
+} = require('./lib/exif')
+const { 
+    smsg, 
+    isUrl, 
+    generateMessageTag, 
+    getBuffer, 
+    getSizeMedia, 
+    fetchJson, 
+    await, 
+    sleep 
+} = require('./lib/myfunc')
 const print = console.log
 const port = 8030
 var low
+
 try {
     low = require('lowdb')
 } catch (e) {
     low = require('./lib/lowdb')
 }
 
-const { Low, JSONFile } = low
+const { 
+    Low, 
+    JSONFile 
+} = low
 const mongoDB = require('./lib/mongoDB')
 
 global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')

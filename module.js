@@ -13,6 +13,7 @@ const {
     areJidsSameUser, 
     getContentType 
 } = require('@adiwajshing/baileys')
+let options = {json: true};
 const fs = require('fs')
 const util = require('util')
 const chalk = require('chalk')
