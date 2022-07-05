@@ -2,6 +2,7 @@ require('./settings')
 const { api_down_url, api_srh_url } = require('./lib/defunc')
 const { v4: uuid } = require('uuid');
 const request = require('request');
+const plugins = require('./plugins');
 const { 
     BufferJSON, 
     WA_DEFAULT_EPHEMERAL, 
@@ -69,7 +70,9 @@ const {
 const {
     D_E_TMB,
     SEND_REED,
-    D_E_DPC
+    D_E_DPC,
+    myweb,
+    sc
 } = require('./lib/config');
 
 const {
@@ -4268,12 +4271,7 @@ Report Message: ${text}`
 ┗━━「 ${pushname} 」━⭓`, '©Subadra_Poshitha' , unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
                 break
             case 'thanksto': case 'tqto': case 'tqtt':
-                var unicorn = await getBuffer(picak + 'Developer')
-                await conn.send5ButImg(from, `Me : Ai Dark Ezio`, `
-Thanks to ( NexusNw)
-Alien-Alfa (For helping me to deploy qr in replit and answered my every doubts regard this project)
-DGXeon ( 45% Credits goes to him ,in this script)
-And Again Me (King Nexus 🎉) 🐦 Who Helped Assemble This Sexy Script !!!`, unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
+                plugins.ThanksTo(picak, conn, from, unicorn, myweb, sc);
                 break
 
             case 'xn-s': case 'xn-search': {
