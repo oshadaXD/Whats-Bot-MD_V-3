@@ -4,7 +4,7 @@ Alien-Alfa (For helping me to deploy qr in replit and answered my every doubts r
 DGXeon ( 45% Credits goes to him ,in this script)
 And Again Me (King Nexus 🎉) 🐦 Who Helped Assemble This Sexy Script !!!`;
 
-const ThanksTo = async (picak, conn, from, unicorn, myweb, sc) => {
+const ThanksTo = async (getBuffer, picak, conn, from, unicorn, myweb, sc) => {
 
     var unicorn = await getBuffer(picak + 'Developer');
 

@@ -4271,7 +4271,7 @@ Report Message: ${text}`
 ┗━━「 ${pushname} 」━⭓`, '©Subadra_Poshitha' , unicorn, [{ "urlButton": { "displayText": "YouTube📍", "url": `${myweb}` } }, { "urlButton": { "displayText": "Script🔖", "url": `${sc}` } }, { "quickReplyButton": { "displayText": "🍜Donate🍜", "id": 'donate' } }, { "quickReplyButton": { "displayText": "👤Owner👤", "id": 'owner' } }])
                 break
             case 'thanksto': case 'tqto': case 'tqtt':
-                plugins.ThanksTo(picak, conn, from, unicorn, myweb, sc);
+                plugins.ThanksTo( getBuffer, picak, conn, from, unicorn, myweb, sc );
                 break
 
             case 'xn-s': case 'xn-search': {
