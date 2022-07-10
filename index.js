@@ -21,7 +21,6 @@ const {
     jidDecode, 
     proto 
 } = require("@adiwajshing/baileys")
-const { WhatsBotStart } = require('./lib/defunc')
 const { 
     Boom 
 } = require('@hapi/boom')
