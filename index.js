@@ -21,6 +21,7 @@ const {
     jidDecode, 
     proto 
 } = require("@adiwajshing/baileys")
+const { WhatsBotStart } = require('./lib/defunc')
 const { 
     Boom 
 } = require('@hapi/boom')
@@ -49,6 +50,7 @@ const path = require('path')
 const PhoneNumber = require('awesome-phonenumber')
 const mongoDB = require('./lib/mongoDB')
 const pino = require('pino');
+const { WhatsBotStart } = require('./lib/defunc')
 const print = console.log
 const port = 8030
 var low
@@ -95,6 +97,7 @@ const { state, saveState } = useSingleFileAuthState(`./session.json`)
 
 async function DarkEzio_Whats_Bot() {
     print("Bot main function started...");
+    WhatsBotStart()
     const conn = NexusNwIncConnect({ // GojoMdNx to conn
         logger: pino({ level: 'silent' }),
         printQRInTerminal: true,
@@ -137,7 +140,6 @@ async function DarkEzio_Whats_Bot() {
     });
 
     conn.ev.on('group-participants.update', async (anu) => {
-        print(anu)
         try {
             let metadata = await conn.groupMetadata(anu.id)
             let participants = anu.participants
@@ -610,19 +612,10 @@ async function DarkEzio_Whats_Bot() {
 
 DarkEzio_Whats_Bot()
 
-// app.listen(port, () => console.log(`Server Is started on port ${port}...`));
-
-// let file = require.resolve(__filename)
-// fs.watchFile(file, () => {
-//     fs.unwatchFile(file)
-//     print(chalk.redBright(`Update ${__filename}`))
-//     delete require.cache[file]
-//     require(file)
-// })
-
-// module.exports = {
-//     toAudio,
-//     toPTT,
-//     toVideo,
-//     ffmpeg,
-//   }
+let file = require.resolve(__filename)
+fs.watchFile(file, () => {
+    fs.unwatchFile(file)
+    print(chalk.redBright(`Update ${__filename}`))
+    delete require.cache[file]
+    require(file)
+})
