@@ -4,6 +4,7 @@
 //𝙰𝙳𝙾𝙿𝚃𝙴𝙳 𝙵𝚁𝙾𝙼  𝚂𝙲𝚁𝙸𝙿𝚃 𝙾𝙵 𝙲𝙷𝙴𝙴𝙼𝚂𝙱𝙾𝚃 𝚅2 𝙱𝚈 𝙳𝙶𝚇𝚎𝚘𝚗 
 //
 //════════════════════════════//
+
 require('./settings')
 const { 
     default: 
@@ -20,22 +21,16 @@ const {
     jidDecode, 
     proto 
 } = require("@adiwajshing/baileys")
-const pino = require('pino');
 const { 
     Boom 
 } = require('@hapi/boom')
-const fs = require('fs')
-const yargs = require('yargs/yargs')
-const chalk = require('chalk')
-const FileType = require('file-type')
-const path = require('path')
-const PhoneNumber = require('awesome-phonenumber')
 const { 
     imageToWebp, 
     videoToWebp, 
     writeExifImg, 
     writeExifVid 
 } = require('./lib/exif')
+const { GroupUpdate } = require('./components/GroupUpdate');
 const { 
     smsg, 
     isUrl, 
@@ -46,6 +41,14 @@ const {
     await, 
     sleep 
 } = require('./lib/myfunc')
+const fs = require('fs')
+const yargs = require('yargs/yargs')
+const chalk = require('chalk')
+const FileType = require('file-type')
+const path = require('path')
+const PhoneNumber = require('awesome-phonenumber')
+const mongoDB = require('./lib/mongoDB')
+const pino = require('pino');
 const print = console.log
 const port = 8030
 var low
@@ -60,7 +63,6 @@ const {
     Low, 
     JSONFile 
 } = low
-const mongoDB = require('./lib/mongoDB')
 
 global.api = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
 
@@ -130,27 +132,9 @@ async function DarkEzio_Whats_Bot() {
     })
 
     // Group Update
-    conn.ev.on('groups.update', async pea => {
-        //print(pea)
-        // Get Profile Picture Group
-        try {
-            ppgc = await conn.profilePictureUrl(pea[0].id, 'image')
-        } catch {
-            ppgc = 'https://shortlink.GojoMdNxarridho.my.id/rg1oT'
-        }
-        let wm_fatih = { url: ppgc }
-        if (pea[0].announce == true) {
-            conn.send5ButImg(pea[0].id, `「 Group Settings Changed 」\n\nThe Group Has Been Closed By Admin, Now Only Admin Can Send Messages !`, `Group Settings Change Message`, wm_fatih, [])
-        } else if (pea[0].announce == false) {
-            conn.send5ButImg(pea[0].id, `「 Group Settings Changed 」\n\nThe Group Has Been Opened By Admin, Now Participants Can Send Messages !`, `Group Settings Change Message`, wm_fatih, [])
-        } else if (pea[0].restrict == true) {
-            conn.send5ButImg(pea[0].id, `「 Group Settings Changed 」\n\nGroup Info Has Been Restricted, Now Only Admin Can Edit Group Info !`, `Group Settings Change Message`, wm_fatih, [])
-        } else if (pea[0].restrict == false) {
-            conn.send5ButImg(pea[0].id, `「 Group Settings Changed 」\n\nGroup Info Has Been Opened, Now Participants Can Edit Group Info !`, `Group Settings Change Message`, wm_fatih, [])
-        } else {
-            conn.send5ButImg(pea[0].id, `「 Group Settings Changed 」\n\nGroup Subject Has Been Changed To *${pea[0].subject}*`, `Group Settings Change Message`, wm_fatih, [])
-        }
-    })
+    conn.ev.on('groups.update', async (groupMetaData) => {
+        await GroupUpdate(groupMetaData, conn);
+    });
 
     conn.ev.on('group-participants.update', async (anu) => {
         print(anu)
