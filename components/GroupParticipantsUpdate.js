@@ -1,5 +1,6 @@
-const { getBuffer } = require('../lib/myfunc')
-const { D_E_TMB } = require('../lib/config')
+const { getBuffer } = require('../lib/myfunc');
+const { D_E_TMB } = require('../lib/config');
+const fs = require('fs');
 
 const GroupParticipantsUpdate = async (event, conn) =>{
     try {
