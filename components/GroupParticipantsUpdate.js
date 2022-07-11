@@ -43,11 +43,11 @@ const GroupParticipantsUpdate = async (event, conn) =>{
 
             } else if (event.action = actions[2]) {
 
-                conn.sendMessage(event.id, { text: `⭐✑ Hi👋 @${member.split("@")[0]}\n\n *You Are New Group admin*`, contextInfo: { mentionedJid: [member], "externalAdReply": { "title": `Dark_Ezio`, "body": ` New Group Admin`, "previewType": "PHOTO", "thumbnailUrl": ``, "thumbnail": fs.readFileSync(`../Media/gojo.jpg`), "sourceUrl": D_E_TMB } } })
+                conn.sendMessage(event.id, { text: `⭐✑ Hi👋 @${member.split("@")[0]}\n\n *You Are New Group admin*`, contextInfo: { mentionedJid: [member] } })
                 
             } else if (event.action = actions[3]) {
                 
-                conn.sendMessage(event.id, { text: `⭐✑ Hi👋 @${member.split("@")[0]}\n\n *You Are Not Group admin*`, contextInfo: { mentionedJid: [member], "externalAdReply": { "title": `Dark_Ezio`, "body": ` New Group Admin`, "previewType": "PHOTO", "thumbnailUrl": ``, "thumbnail": fs.readFileSync(`../Media/gojo.jpg`), "sourceUrl": D_E_TMB } } })
+                conn.sendMessage(event.id, { text: `⭐✑ Hi👋 @${member.split("@")[0]}\n\n *You Are Not Group admin*`, contextInfo: { mentionedJid: [member] } })
 
             }
         };
