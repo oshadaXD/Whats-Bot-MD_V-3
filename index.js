@@ -211,7 +211,7 @@ async function DarkEzio_Whats_Bot() {
     conn.serializeM = (m) => smsg(conn, m, store)
 
     conn.ev.on('connection.update', async (update) => {
-        ConnectionUpdate(update, conn, DisconnectReason);
+        ConnectionUpdate(update, conn, DisconnectReason, DarkEzio_Whats_Bot);
     })
 
     conn.ev.on('creds.update', saveState)
@@ -545,4 +545,4 @@ fs.watchFile(file, () => {
     require(file)
 })
 
-module.exports = {DarkEzio_Whats_Bot}
+// module.exports = {DarkEzio_Whats_Bot}

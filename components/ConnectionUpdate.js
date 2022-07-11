@@ -1,8 +1,8 @@
 const { Boom } = require('@hapi/boom');
-const { DarkEzio_Whats_Bot } = require('../index');
+// const { DarkEzio_Whats_Bot } = require('../index');
 const print = console.log
 
-const ConnectionUpdate = (update, conn, DisconnectReason) => {
+const ConnectionUpdate = (update, conn, DisconnectReason, DarkEzio_Whats_Bot) => {
             const { connection, lastDisconnect } = update
         if (connection === 'close') {
             let reason = new Boom(lastDisconnect?.error)?.output.statusCode
