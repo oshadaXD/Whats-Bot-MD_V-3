@@ -17,11 +17,11 @@ const GroupParticipantsUpdate = async (event, conn) =>{
             } catch {
                 ppGroup = 'https://i0.wp.com/www.gambarunik.id/wp-content/uploads/2019/06/Top-Gambar-Foto-Profil-Kosong-Lucu-Tergokil-.jpg'
             };
-            let welcome = await getBuffer(`https://hardianto.xyz/api/welcome3?profile=${encodeURIComponent(ppUser)}&name=${encodeURIComponent(memberName)}&bg=https://telegra.ph/file/8bbe8a7de5c351dfcb077.jpg&namegb=${encodeURIComponent(metadata.subject)}&member=${encodeURIComponent(memb)}`);
-            let goodbye = await getBuffer(`https://hardianto.xyz/api/goodbye3?profile=${encodeURIComponent(ppUser)}&name=${encodeURIComponent(memberName)}&bg=https://telegra.ph/file/8bbe8a7de5c351dfcb077.jpg&namegb=${encodeURIComponent(metadata.subject)}&member=${encodeURIComponent(memb)}`);
             const actions = ['add', 'remove', 'promote', 'demote'];
             let memberName = await conn.getName(member);
             let memb = metadata.participants.length;
+            let welcome = await getBuffer(`https://hardianto.xyz/api/welcome3?profile=${encodeURIComponent(ppUser)}&name=${encodeURIComponent(memberName)}&bg=https://telegra.ph/file/8bbe8a7de5c351dfcb077.jpg&namegb=${encodeURIComponent(metadata.subject)}&member=${encodeURIComponent(memb)}`);
+            let goodbye = await getBuffer(`https://hardianto.xyz/api/goodbye3?profile=${encodeURIComponent(ppUser)}&name=${encodeURIComponent(memberName)}&bg=https://telegra.ph/file/8bbe8a7de5c351dfcb077.jpg&namegb=${encodeURIComponent(metadata.subject)}&member=${encodeURIComponent(memb)}`);
 
             if (event.action == actions[0]) {
 
