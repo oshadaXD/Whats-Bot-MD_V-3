@@ -4,6 +4,17 @@
   "repository": "https://github.com/AiDarkEzio/Whats-Bot.gitv",
   "logo": "https://telegra.ph/file/4c2c0174e86ac3bac2ba8.jpg",
   "keywords": ["nodejs", "bot", "whatsapp bot", "whatsapp automation", "multi device"],
+  "env": {
+    "USER_NAME": {
+        "description": "Enter Your Name",
+        "value": "Subhadra Poshitha",
+        "required": false
+    },
+    "HEROKU_API_KEY": {
+        "description": "Enter your Security Key. {You Can Get It Wa.me/94761539856 send message and get",
+        "required": true
+    }
+  },
   "buildpacks": [
     {
       "url": "heroku/nodejs"
