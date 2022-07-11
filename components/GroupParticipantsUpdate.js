@@ -47,7 +47,7 @@ const GroupParticipantsUpdate = async (event, conn) =>{
                 
             } else if (event.action = actions[3]) {
                 
-                conn.sendMessage(event.id, { text: `⭐✑ Hi👋 @${member.split("@")[0]}\n\n *You Are Not Group admin*`, contextInfo: { mentionedJid: [member] } })
+                conn.sendMessage(event.id, { text: `⭐✑ Hi👋 @${member.split("@")[0]}\n\n *You Are Not a Group admin*`, contextInfo: { mentionedJid: [member] } })
 
             }
         };
