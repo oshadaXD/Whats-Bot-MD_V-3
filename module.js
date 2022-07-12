@@ -174,6 +174,12 @@ let tebaklirik = (db.data.game.lirik = []);
 let tebaktebakan = (db.data.game.tebakan = []);
 let vote = (db.data.others.vote = []);
 
+fs.readdirSync('./plugins').forEach(plugin => {
+    if(path.extname(plugin).toLowerCase() == '.js') {
+        require('./plugins/' + plugin);
+    }
+})
+
 module.exports = GojoMdNx = async (conn, m, chatUpdate, store) => {
   // GojoMdNx to conn
   try {
@@ -977,6 +983,7 @@ In ${clockString(new Date() - user.afkTime)}
           teksehmazeh += `*🐘Elephant* : ${getGajah(m.sender)}\n\n`;
           teksehmazeh += `_*${pushname}*_`;
           await conn.send5ButImg(
+            m,
             from,
             `` + "" + teksehmazeh,
             `© ${footer}`,
@@ -3463,7 +3470,7 @@ ${vote[m.chat][2].map((v, i) => `┃╠ ${i + 1}. @${v.split`@`[0]}`).join("\n")
               },
             ];
             let txt = `「 Dark-Ezio HERE🎉 」\n\n${text}`;
-            conn.send5ButImg(i, txt, conn.user.name, global.thumb, btn);
+            conn.send5ButImg(m, i, txt, conn.user.name, global.thumb, btn);
           }
           reply(`Successful Sending Broadcast To ${anu.length} Group(s)`);
         }
@@ -3512,7 +3519,7 @@ ${vote[m.chat][2].map((v, i) => `┃╠ ${i + 1}. @${v.split`@`[0]}`).join("\n")
               },
             ];
             let txt = `「 Dark-Ezio HERE 🎉」\n\n${text}`;
-            conn.send5ButImg(yoi, txt, conn.user.name, global.thumb, btn);
+            conn.send5ButImg(m, yoi, txt, conn.user.name, global.thumb, btn);
           }
           reply("Broadcast Success");
         }
@@ -7041,6 +7048,7 @@ Report Message: ${text}`,
       case "mainmenu":
         var unicorn = await getBuffer(picak + "Main Menu");
         await conn.send5ButImg(
+          m,
           from,
           `
 ┏━「 ${botname} 」━━⭓ 
@@ -7080,6 +7088,7 @@ Report Message: ${text}`,
       case "groupmenu":
         var unicorn = await getBuffer(picak + "Group Menu");
         await conn.send5ButImg(
+          m,
           from,
           `
 ┏━「 ${botname} 」━━⭓ 
@@ -7120,6 +7129,7 @@ Report Message: ${text}`,
       case "rpgmenu":
         var unicorn = await getBuffer(picak + "Rpg Menu");
         await conn.send5ButImg(
+          m,
           from,
           `
 ┏━「 ${botname} 」━━⭓ 
@@ -7149,6 +7159,7 @@ Report Message: ${text}`,
       case "funmenu":
         var unicorn = await getBuffer(picak + "Fun Menu");
         await conn.send5ButImg(
+          m,
           from,
           `
 ┏━「 ${botname} 」━━⭓ 
@@ -7213,6 +7224,7 @@ Report Message: ${text}`,
       case "ownermenu":
         var unicorn = await getBuffer(picak + "Owner Menu");
         await conn.send5ButImg(
+          m,
           from,
           `
 ┏━「 ${botname} 」━━⭓ 
@@ -7252,6 +7264,7 @@ Report Message: ${text}`,
       case "downloadmenu":
         var unicorn = await getBuffer(picak + "Downloader Menu");
         await conn.send5ButImg(
+          m,
           from,
           `
 ┏━「 ${botname} 」━━⭓ 
@@ -7278,6 +7291,7 @@ Report Message: ${text}`,
       case "searchmenu":
         var unicorn = await getBuffer(picak + "Search Menu");
         await conn.send5ButImg(
+          m,
           from,
           `
 ┏━「 ${botname} 」━━⭓ 
@@ -7308,6 +7322,7 @@ Report Message: ${text}`,
       case "randommenu":
         var unicorn = await getBuffer(picak + "Random Menu");
         await conn.send5ButImg(
+          m,
           from,
           `
 ┏━「 ${botname} 」━━⭓ 
@@ -7330,6 +7345,7 @@ Report Message: ${text}`,
       case "randomanimemenu":
         var unicorn = await getBuffer(picak + "Random Anime Menu");
         await conn.send5ButImg(
+          m,
           from,
           `
 ┏━「 ${botname} 」━━⭓ 
@@ -7376,6 +7392,7 @@ Report Message: ${text}`,
       case "textpromenu":
         var unicorn = await getBuffer(picak + "Text Pro Menu");
         await conn.send5ButImg(
+          m,
           from,
           `
 ┏━「 ${botname} 」━━⭓ 
@@ -7426,6 +7443,7 @@ Report Message: ${text}`,
       case "convertmenu":
         var unicorn = await getBuffer(picak + "Converter Menu");
         await conn.send5ButImg(
+          m,
           from,
           `
 ┏━「 ${botname} 」━━⭓ 
@@ -7456,6 +7474,7 @@ Report Message: ${text}`,
       case "databasemenu":
         var unicorn = await getBuffer(picak + "Database Menu");
         await conn.send5ButImg(
+          m,
           from,
           `
 ┏━「 ${botname} 」━━⭓ 
@@ -7483,6 +7502,7 @@ Report Message: ${text}`,
       case "databasemenu":
         var unicorn = await getBuffer(picak + "Database Menu");
         await conn.send5ButImg(
+          m,
           from,
           `
 ┏━「 ${botname} 」━━⭓ 
@@ -7506,6 +7526,7 @@ Report Message: ${text}`,
       case "islamicmenu":
         var unicorn = await getBuffer(picak + "Islamic Menu");
         await conn.send5ButImg(
+          m,
           from,
           `
 ┏━「 ${botname} 」━━⭓ 
@@ -7526,6 +7547,7 @@ Report Message: ${text}`,
       case "voicechangermenu":
         var unicorn = await getBuffer(picak + "Voice Changer Menu");
         await conn.send5ButImg(
+          m,
           from,
           `
 ┏━「 ${botname} 」━━⭓ 
@@ -7556,6 +7578,7 @@ Report Message: ${text}`,
       case "horoscopemenu":
         var unicorn = await getBuffer(picak + "Horoscope Menu");
         await conn.send5ButImg(
+          m,
           from,
           `
 ┏━「 ${botname} 」━━⭓ 

@@ -230,7 +230,7 @@ async function DarkEzio_Whats_Bot() {
      * @param {*} options
      * @returns
      */
-    conn.send5ButImg = async (jid, text = '', footer = '', img, but = [], options = {}) => {
+    conn.send5ButImg = async (m, jid, text = '', footer = '', img, but = [], options = {}) => {
         let message = await prepareWAMessageMedia({ image: img }, { upload: conn.waUploadToServer })
         var template = generateWAMessageFromContent(m.chat, proto.Message.fromObject({
             templateMessage: {
