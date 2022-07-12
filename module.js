@@ -935,12 +935,9 @@ In ${clockString(new Date() - user.afkTime)}
       user.afkReason = "";
     }
 
-    const match = [ _command, text, args];
-    const whats = [ conn, m ];
-
     event.commands.map(async (command) => {
       if (command.pattern.includes(_command.toLowerCase())) {
-        return await command.function(whats, match);
+        return await command.function(conn, m, _command, text, args );
       }
     });
 
