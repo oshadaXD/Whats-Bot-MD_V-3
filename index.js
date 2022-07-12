@@ -97,8 +97,17 @@ if (global.db) setInterval(async () => {
 const { state, saveState } = useSingleFileAuthState(`./session.json`)
 
 async function DarkEzio_Whats_Bot() {
-    print("Bot main function started...");
+
+    print("Bot started...");
+    print("Verifing and Checking Security");
     WhatsBotStart()
+    print('🤖Installing plugins...')
+    fs.readdirSync('./plugins').forEach(plugin => {
+        if(path.extname(plugin).toLowerCase() == '.js') {
+            require('./plugins/' + plugin);
+        }
+    })
+    print('👩‍🦰 Connecting to WhatsApp...▶')
     const conn = NexusNwIncConnect({ // GojoMdNx to conn
         logger: pino({ level: 'silent' }),
         printQRInTerminal: true,
@@ -136,13 +145,9 @@ async function DarkEzio_Whats_Bot() {
     })
 
     // Group Update
-    conn.ev.on('groups.update', async (groupMetaData) => {
-        await GroupUpdate(groupMetaData, conn);
-    });
-
-    conn.ev.on('group-participants.update', async (event) => {
-        GroupParticipantsUpdate(event, conn);
-    })
+    conn.ev.on('groups.update', async (groupMetaData) => await GroupUpdate(groupMetaData, conn));
+    // Group Participants Update
+    conn.ev.on('group-participants.update', async (event) => GroupParticipantsUpdate(event, conn));
 
     //Setting\\
     conn.decodeJid = (jid) => {
@@ -206,15 +211,13 @@ async function DarkEzio_Whats_Bot() {
         return status
     }
 
-    conn.public = true
+    conn.public = true;
 
-    conn.serializeM = (m) => smsg(conn, m, store)
-
-    conn.ev.on('connection.update', async (update) => {
-        ConnectionUpdate(update, conn, DisconnectReason, DarkEzio_Whats_Bot);
-    })
-
-    conn.ev.on('creds.update', saveState)
+    conn.serializeM = (m) => smsg(conn, m, store);
+    // Connection Update
+    conn.ev.on('connection.update', async (update) => ConnectionUpdate(update, conn, DisconnectReason, DarkEzio_Whats_Bot));
+    // Creds Update
+    conn.ev.on('creds.update', saveState);
 
     // Add Other
     /** Send Button 5 Image
