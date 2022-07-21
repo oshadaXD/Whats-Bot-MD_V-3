@@ -6481,7 +6481,7 @@ Report Message: ${text}`,
                   locationMessage: {
                     jpegThumbnail: fs.readFileSync("./Media/D_E-DPC.jpg"),
                   },
-                  hydratedFooterText: "©Subadra_Poshitha",
+                  hydratedFooterText: "V I M U K T H I",
                   hydratedButtons: [
                     {
                       urlButton: {
@@ -6559,7 +6559,7 @@ Report Message: ${text}`,
                   locationMessage: {
                     jpegThumbnail: fs.readFileSync("./Media/D_E-DPC.jpg"),
                   },
-                  hydratedFooterText: "©Subadra_Poshitha",
+                  hydratedFooterText: "V I M U K T H I",
                   hydratedButtons: [
                     {
                       urlButton: {
@@ -7065,7 +7065,7 @@ Report Message: ${text}`,
 ┃╠ ${prefix}report [bug]
 ┃╚═════════════✪
 ┗━━「 ${pushname} 」━⭓`,
-          "©Subadra_Poshitha",
+          "V I M U K T H I",
           unicorn,
           [
             {
@@ -7112,7 +7112,7 @@ Report Message: ${text}`,
 ┃╠${prefix}delvote
 ┃╚═════════════✪
 ┗━━「 ${pushname} 」━⭓`,
-          "©Subadra_Poshitha",
+          "V I M U K T H I",
           unicorn,
           [
             { urlButton: { displayText: "YouTube📍", url: `${myweb}` } },
@@ -7142,7 +7142,7 @@ Report Message: ${text}`,
 ┃╠${prefix}sell [option]
 ┃╚═════════════✪
 ┗━━「 ${pushname} 」━⭓`,
-          "©Subadra_Poshitha",
+          "V I M U K T H I",
           unicorn,
           [
             { urlButton: { displayText: "YouTube📍", url: `${myweb}` } },
@@ -7207,7 +7207,7 @@ Report Message: ${text}`,
 ┃╠ ${prefix}suitpvp [tag]
 ┃╚═════════════✪
 ┗━━「 ${pushname} 」━⭓`,
-          "©Subadra_Poshitha",
+          "V I M U K T H I",
           unicorn,
           [
             { urlButton: { displayText: "YouTube📍", url: `${myweb}` } },
@@ -7248,7 +7248,7 @@ Report Message: ${text}`,
 ┃╠${prefix}delvote
 ┃╚═════════════✪
 ┗━━「 ${pushname} 」━⭓`,
-          "©Subadra_Poshitha",
+          "V I M U K T H I",
           unicorn,
           [
             { urlButton: { displayText: "YouTube📍", url: `${myweb}` } },
@@ -7275,7 +7275,7 @@ Report Message: ${text}`,
 ┃╠${prefix}soundcloud [url]
 ┃╚═════════════✪
 ┗━━「 ${pushname} 」━⭓`,
-          "©Subadra_Poshitha",
+          "V I M U K T H I",
           unicorn,
           [
             { urlButton: { displayText: "YouTube📍", url: `${myweb}` } },
@@ -7306,7 +7306,7 @@ Report Message: ${text}`,
 ┃╠${prefix}webtoon [query]
 ┃╚═════════════✪
 ┗━━「 ${pushname} 」━⭓`,
-          "©Subadra_Poshitha",
+          "V I M U K T H I",
           unicorn,
           [
             { urlButton: { displayText: "YouTube📍", url: `${myweb}` } },
@@ -7329,7 +7329,7 @@ Report Message: ${text}`,
 ┃╠${prefix}couplepp
 ┃╚═════════════✪
 ┗━━「 ${pushname} 」━⭓`,
-          "©Subadra_Poshitha",
+          "V I M U K T H I",
           unicorn,
           [
             { urlButton: { displayText: "YouTube📍", url: `${myweb}` } },
@@ -7376,7 +7376,7 @@ Report Message: ${text}`,
 ┃╠${prefix}cringe
 ┃╚═════════════✪
 ┗━━「 ${pushname} 」━⭓`,
-          "©Subadra_Poshitha",
+          "V I M U K T H I",
           unicorn,
           [
             { urlButton: { displayText: "YouTube📍", url: `${myweb}` } },
@@ -7427,7 +7427,7 @@ Report Message: ${text}`,
 ┃╠ ${prefix}gluetext [txt]
 ┃╚═════════════✪
 ┗━━「 ${pushname} 」━⭓`,
-          "©Subadra_Poshitha",
+          "V I M U K T H I",
           unicorn,
           [
             { urlButton: { displayText: "YouTube📍", url: `${myweb}` } },
@@ -7458,7 +7458,7 @@ Report Message: ${text}`,
 ┃╠ ${prefix}dbinary [reply txt]
 ┃╚═════════════✪
 ┗━━「 ${pushname} 」━⭓`,
-          "©Subadra_Poshitha",
+          "V I M U K T H I",
           unicorn,
           [
             { urlButton: { displayText: "YouTube📍", url: `${myweb}` } },
@@ -7486,7 +7486,7 @@ Report Message: ${text}`,
 ┃╠ ${prefix}delmsg
 ┃╚═════════════✪
 ┗━━「 ${pushname} 」━⭓`,
-          "©Subadra_Poshitha",
+          "V I M U K T H I",
           unicorn,
           [
             { urlButton: { displayText: "YouTube📍", url: `${myweb}` } },
@@ -7510,7 +7510,7 @@ Report Message: ${text}`,
 ┃╠${prefix}leave
 ┃╚═════════════✪
 ┗━━「 ${pushname} 」━⭓`,
-          "©Subadra_Poshitha",
+          "V I M U K T H I",
           unicorn,
           [
             { urlButton: { displayText: "YouTube📍", url: `${myweb}` } },
@@ -7531,7 +7531,7 @@ Report Message: ${text}`,
 ┃╠${prefix}juzamma
 ┃╚═════════════✪
 ┗━━「 ${pushname} 」━⭓`,
-          "©Subadra_Poshitha",
+          "V I M U K T H I",
           unicorn,
           [
             { urlButton: { displayText: "YouTube📍", url: `${myweb}` } },
@@ -7562,7 +7562,7 @@ Report Message: ${text}`,
 ┃╠${prefix}squirrel [reply aud]
 ┃╚═════════════✪
 ┗━━「 ${pushname} 」━⭓`,
-          "©Subadra_Poshitha",
+          "V I M U K T H I",
           unicorn,
           [
             { urlButton: { displayText: "YouTube📍", url: `${myweb}` } },
@@ -7612,7 +7612,7 @@ Report Message: ${text}`,
 ┃╠${prefix}shio (indo)
 ┃╚═════════════✪
 ┗━━「 ${pushname} 」━⭓`,
-          "©Subadra_Poshitha",
+          "V I M U K T H I",
           unicorn,
           [
             { urlButton: { displayText: "YouTube📍", url: `${myweb}` } },
