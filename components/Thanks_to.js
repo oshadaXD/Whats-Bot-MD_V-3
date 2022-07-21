@@ -1,4 +1,5 @@
     const futter = `
+Vimukthi Oshada    
 Thanks to ( NexusNw)
 Alien-Alfa (For helping me to deploy qr in replit and answered my every doubts regard this project)
 DGXeon ( 45% Credits goes to him ,in this script)
